@@ -14,9 +14,10 @@ _sym_db = _symbol_database.Default()
 
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from relations.v0 import common_pb2 as relations_dot_v0_dot_common__pb2
+from validate import validate_pb2 as validate_dot_validate__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19relations/v0/lookup.proto\x12\x13kessel.relations.v0\x1a\x1cgoogle/api/annotations.proto\x1a\x19relations/v0/common.proto\"\x9c\x02\n\x15LookupSubjectsRequest\x12\x36\n\x08resource\x18\x01 \x01(\x0b\x32$.kessel.relations.v0.ObjectReference\x12\x10\n\x08relation\x18\x02 \x01(\t\x12\x35\n\x0csubject_type\x18\x03 \x01(\x0b\x32\x1f.kessel.relations.v0.ObjectType\x12\x1d\n\x10subject_relation\x18\x04 \x01(\tH\x00\x88\x01\x01\x12?\n\npagination\x18\x05 \x01(\x0b\x32&.kessel.relations.v0.RequestPaginationH\x01\x88\x01\x01\x42\x13\n\x11_subject_relationB\r\n\x0b_pagination\"\x8d\x01\n\x16LookupSubjectsResponse\x12\x36\n\x07subject\x18\x01 \x01(\x0b\x32%.kessel.relations.v0.SubjectReference\x12;\n\npagination\x18\x02 \x01(\x0b\x32\'.kessel.relations.v0.ResponsePagination2\x99\x01\n\x13KesselLookupService\x12\x81\x01\n\x0eLookupSubjects\x12*.kessel.relations.v0.LookupSubjectsRequest\x1a+.kessel.relations.v0.LookupSubjectsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v0/subjects0\x01\x42\x61\n#org.project_kessel.api.relations.v0P\x01Z8github.com/project-kessel/relations-api/api/relations/v0b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x19relations/v0/lookup.proto\x12\x13kessel.relations.v0\x1a\x1cgoogle/api/annotations.proto\x1a\x19relations/v0/common.proto\x1a\x17validate/validate.proto\"\xb9\x02\n\x15LookupSubjectsRequest\x12@\n\x08resource\x18\x01 \x01(\x0b\x32$.kessel.relations.v0.ObjectReferenceB\x08\xfa\x42\x05\xa2\x01\x02\x08\x01\x12\x19\n\x08relation\x18\x02 \x01(\tB\x07\xfa\x42\x04r\x02\x10\x01\x12?\n\x0csubject_type\x18\x03 \x01(\x0b\x32\x1f.kessel.relations.v0.ObjectTypeB\x08\xfa\x42\x05\xa2\x01\x02\x08\x01\x12\x1d\n\x10subject_relation\x18\x04 \x01(\tH\x00\x88\x01\x01\x12?\n\npagination\x18\x05 \x01(\x0b\x32&.kessel.relations.v0.RequestPaginationH\x01\x88\x01\x01\x42\x13\n\x11_subject_relationB\r\n\x0b_pagination\"\x8d\x01\n\x16LookupSubjectsResponse\x12\x36\n\x07subject\x18\x01 \x01(\x0b\x32%.kessel.relations.v0.SubjectReference\x12;\n\npagination\x18\x02 \x01(\x0b\x32\'.kessel.relations.v0.ResponsePagination2\x99\x01\n\x13KesselLookupService\x12\x81\x01\n\x0eLookupSubjects\x12*.kessel.relations.v0.LookupSubjectsRequest\x1a+.kessel.relations.v0.LookupSubjectsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v0/subjects0\x01\x42\x61\n#org.project_kessel.api.relations.v0P\x01Z8github.com/project-kessel/relations-api/api/relations/v0b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -24,12 +25,18 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'relations.v0.lookup_pb2', _
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n#org.project_kessel.api.relations.v0P\001Z8github.com/project-kessel/relations-api/api/relations/v0'
+  _globals['_LOOKUPSUBJECTSREQUEST'].fields_by_name['resource']._loaded_options = None
+  _globals['_LOOKUPSUBJECTSREQUEST'].fields_by_name['resource']._serialized_options = b'\372B\005\242\001\002\010\001'
+  _globals['_LOOKUPSUBJECTSREQUEST'].fields_by_name['relation']._loaded_options = None
+  _globals['_LOOKUPSUBJECTSREQUEST'].fields_by_name['relation']._serialized_options = b'\372B\004r\002\020\001'
+  _globals['_LOOKUPSUBJECTSREQUEST'].fields_by_name['subject_type']._loaded_options = None
+  _globals['_LOOKUPSUBJECTSREQUEST'].fields_by_name['subject_type']._serialized_options = b'\372B\005\242\001\002\010\001'
   _globals['_KESSELLOOKUPSERVICE'].methods_by_name['LookupSubjects']._loaded_options = None
   _globals['_KESSELLOOKUPSERVICE'].methods_by_name['LookupSubjects']._serialized_options = b'\202\323\344\223\002\016\022\014/v0/subjects'
-  _globals['_LOOKUPSUBJECTSREQUEST']._serialized_start=108
-  _globals['_LOOKUPSUBJECTSREQUEST']._serialized_end=392
-  _globals['_LOOKUPSUBJECTSRESPONSE']._serialized_start=395
-  _globals['_LOOKUPSUBJECTSRESPONSE']._serialized_end=536
-  _globals['_KESSELLOOKUPSERVICE']._serialized_start=539
-  _globals['_KESSELLOOKUPSERVICE']._serialized_end=692
+  _globals['_LOOKUPSUBJECTSREQUEST']._serialized_start=133
+  _globals['_LOOKUPSUBJECTSREQUEST']._serialized_end=446
+  _globals['_LOOKUPSUBJECTSRESPONSE']._serialized_start=449
+  _globals['_LOOKUPSUBJECTSRESPONSE']._serialized_end=590
+  _globals['_KESSELLOOKUPSERVICE']._serialized_start=593
+  _globals['_KESSELLOOKUPSERVICE']._serialized_end=746
 # @@protoc_insertion_point(module_scope)
