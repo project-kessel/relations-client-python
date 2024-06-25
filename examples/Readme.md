@@ -2,7 +2,7 @@
 ### 1. Clone this [repo](https://github.com/project-kessel/relations-api) and run
 
 ```
-make rebac
+make relations-api-up
 ```
 
 ### 2. Create a Python environment
