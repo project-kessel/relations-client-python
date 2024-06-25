@@ -55,7 +55,8 @@ $PYTHON_CMD -m grpc_tools.protoc \
             --python_out="$OUTPUT_DIR"/src \
             --pyi_out="$OUTPUT_DIR"/src \
             --grpc_python_out="$OUTPUT_DIR"/src \
-            "$TEMP_DIR/api/relations/v0"/*.proto
+            "$TEMP_DIR/api/relations/v0"/*.proto \
+            "$TEMP_DIR/third_party/validate/"validate.proto
 
 echo "Python client generated in $TEMP_DIR"
 
