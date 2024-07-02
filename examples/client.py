@@ -86,7 +86,7 @@ def run():
     print("--End of Check request--")
     print()
 
-    print("--Start of LookupService--")
+    print("--Start of LookupSubjects--")
     with grpc.insecure_channel(relation_api_gRPC_server) as channel:
         stub = lookup_pb2_grpc.KesselLookupServiceStub(channel)
         request = lookup_pb2.LookupSubjectsRequest(
@@ -99,7 +99,25 @@ def run():
             print("Subject ID: %s" % r.subject.subject.id)
             print("Resource Type: %s" % r.subject.subject.type.name)
 
-        print("--End of LookupService--")
+        print("--End of LookupSubjects--")
+        print()
+
+    print("--Start of LookupResources--")
+    with grpc.insecure_channel(relation_api_gRPC_server) as channel:
+        stub = lookup_pb2_grpc.KesselLookupServiceStub(channel)
+        request = lookup_pb2.LookupResourcesRequest(
+            resource_type=common_pb2.ObjectType(name="group"),
+            relation="member",
+            subject=common_pb2.SubjectReference(
+                subject=common_pb2.ObjectReference(type=common_pb2.ObjectType(name="user"), id="bob")
+            )
+        )
+        responses = stub.LookupResources(request)
+        for r in responses:
+            print("Resource Type: %s" % r.resource.type.name)
+            print("Resource ID: %s" % r.resource.id)
+
+        print("--End of LookupResources--")
         print()
 
 
