@@ -44,12 +44,23 @@ class KesselLookupServiceStub(object):
                 request_serializer=relations_dot_v0_dot_lookup__pb2.LookupSubjectsRequest.SerializeToString,
                 response_deserializer=relations_dot_v0_dot_lookup__pb2.LookupSubjectsResponse.FromString,
                 _registered_method=True)
+        self.LookupResources = channel.unary_stream(
+                '/kessel.relations.v0.KesselLookupService/LookupResources',
+                request_serializer=relations_dot_v0_dot_lookup__pb2.LookupResourcesRequest.SerializeToString,
+                response_deserializer=relations_dot_v0_dot_lookup__pb2.LookupResourcesResponse.FromString,
+                _registered_method=True)
 
 
 class KesselLookupServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def LookupSubjects(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def LookupResources(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -62,6 +73,11 @@ def add_KesselLookupServiceServicer_to_server(servicer, server):
                     servicer.LookupSubjects,
                     request_deserializer=relations_dot_v0_dot_lookup__pb2.LookupSubjectsRequest.FromString,
                     response_serializer=relations_dot_v0_dot_lookup__pb2.LookupSubjectsResponse.SerializeToString,
+            ),
+            'LookupResources': grpc.unary_stream_rpc_method_handler(
+                    servicer.LookupResources,
+                    request_deserializer=relations_dot_v0_dot_lookup__pb2.LookupResourcesRequest.FromString,
+                    response_serializer=relations_dot_v0_dot_lookup__pb2.LookupResourcesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -91,6 +107,33 @@ class KesselLookupService(object):
             '/kessel.relations.v0.KesselLookupService/LookupSubjects',
             relations_dot_v0_dot_lookup__pb2.LookupSubjectsRequest.SerializeToString,
             relations_dot_v0_dot_lookup__pb2.LookupSubjectsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def LookupResources(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/kessel.relations.v0.KesselLookupService/LookupResources',
+            relations_dot_v0_dot_lookup__pb2.LookupResourcesRequest.SerializeToString,
+            relations_dot_v0_dot_lookup__pb2.LookupResourcesResponse.FromString,
             options,
             channel_credentials,
             insecure,
