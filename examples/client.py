@@ -3,15 +3,15 @@ from __future__ import print_function
 import logging
 
 import grpc
-from relations.v0 import relation_tuples_pb2 
-from relations.v0 import relation_tuples_pb2_grpc
-from relations.v0 import common_pb2
+from kessel.relations.v1beta1 import relation_tuples_pb2
+from kessel.relations.v1beta1 import relation_tuples_pb2_grpc
+from kessel.relations.v1beta1 import common_pb2
 
-from relations.v0 import check_pb2
-from relations.v0 import check_pb2_grpc
+from kessel.relations.v1beta1 import check_pb2
+from kessel.relations.v1beta1 import check_pb2_grpc
 
-from relations.v0 import lookup_pb2
-from relations.v0 import lookup_pb2_grpc
+from kessel.relations.v1beta1 import lookup_pb2
+from kessel.relations.v1beta1 import lookup_pb2_grpc
 
 
 relation_api_gRPC_server = "localhost:9000"
