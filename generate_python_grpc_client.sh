@@ -3,7 +3,7 @@
 set -e
 
 GITHUB_REPO_URL="https://github.com/project-kessel/relations-api"
-PROTO_FOLDER="api/relations/v0"
+PROTO_FOLDER="api/kessel/relations/v1beta1"
 TEMP_DIR=$(mktemp -d)
 VENV_DIR="$TEMP_DIR/venv"
 OUTPUT_DIR=$(pwd)
@@ -51,11 +51,11 @@ echo "Generating Python client from proto files..."
 
 $PYTHON_CMD -m grpc_tools.protoc \
             -I"$TEMP_DIR/third_party/"  \
-            -Irelations/v0="$TEMP_DIR/api/relations/v0"  \
+            -Ikessel/relations/v1beta1="$TEMP_DIR/$PROTO_FOLDER"  \
             --python_out="$OUTPUT_DIR"/src \
             --pyi_out="$OUTPUT_DIR"/src \
             --grpc_python_out="$OUTPUT_DIR"/src \
-            "$TEMP_DIR/api/relations/v0"/*.proto \
+            "$TEMP_DIR/$PROTO_FOLDER"/*.proto \
             "$TEMP_DIR/third_party/validate/"validate.proto
 
 echo "Python client generated in $TEMP_DIR"
