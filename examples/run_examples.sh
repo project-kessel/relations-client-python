@@ -3,6 +3,7 @@
 ENV_DIR="venv"
 REQUIREMENTS_FILE="requirements.txt"
 PYTHON_SCRIPT="client.py"
+PYTHON_VALIDATION_SCRIPT="client_validations.py"
 
 if [ -d "$ENV_DIR" ]; then
     echo "Removing existing virtual environment directory..."
@@ -31,6 +32,9 @@ echo ""
 if [ -f "$PYTHON_SCRIPT" ]; then
     echo "Running the Python script $PYTHON_SCRIPT..."
     python "$PYTHON_SCRIPT"
+    echo
+    echo "Validations examples"
+    python "$PYTHON_VALIDATION_SCRIPT"
 else
     echo "Error: $PYTHON_SCRIPT not found!"
     exit 1
@@ -38,3 +42,7 @@ fi
 
 deactivate
 
+if [ -d "$ENV_DIR" ]; then
+    echo "Removing existing virtual environment directory..."
+    rm -rf "$ENV_DIR"
+fi

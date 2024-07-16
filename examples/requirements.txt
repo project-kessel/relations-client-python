@@ -6,7 +6,7 @@ Jinja2==3.1.4
 MarkupSafe==2.1.5
 protobuf==5.27.2
 protoc-gen-validate==1.0.4
-relations-grpc-clients-python-kessel-project==0.2.1
+relations-grpc-clients-python-kessel-project==0.3.1
 setuptools==70.1.1
 six==1.16.0
 validate_email==1.3
