@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from relations.v0 import check_pb2 as relations_dot_v0_dot_check__pb2
+from kessel.relations.v1beta1 import check_pb2 as kessel_dot_relations_dot_v1beta1_dot_check__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -20,7 +20,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in relations/v0/check_pb2_grpc.py depends on'
+        + f' but the generated code in kessel/relations/v1beta1/check_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -40,9 +40,9 @@ class KesselCheckServiceStub(object):
             channel: A grpc.Channel.
         """
         self.Check = channel.unary_unary(
-                '/kessel.relations.v0.KesselCheckService/Check',
-                request_serializer=relations_dot_v0_dot_check__pb2.CheckRequest.SerializeToString,
-                response_deserializer=relations_dot_v0_dot_check__pb2.CheckResponse.FromString,
+                '/kessel.relations.v1beta1.KesselCheckService/Check',
+                request_serializer=kessel_dot_relations_dot_v1beta1_dot_check__pb2.CheckRequest.SerializeToString,
+                response_deserializer=kessel_dot_relations_dot_v1beta1_dot_check__pb2.CheckResponse.FromString,
                 _registered_method=True)
 
 
@@ -62,14 +62,14 @@ def add_KesselCheckServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Check': grpc.unary_unary_rpc_method_handler(
                     servicer.Check,
-                    request_deserializer=relations_dot_v0_dot_check__pb2.CheckRequest.FromString,
-                    response_serializer=relations_dot_v0_dot_check__pb2.CheckResponse.SerializeToString,
+                    request_deserializer=kessel_dot_relations_dot_v1beta1_dot_check__pb2.CheckRequest.FromString,
+                    response_serializer=kessel_dot_relations_dot_v1beta1_dot_check__pb2.CheckResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'kessel.relations.v0.KesselCheckService', rpc_method_handlers)
+            'kessel.relations.v1beta1.KesselCheckService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('kessel.relations.v0.KesselCheckService', rpc_method_handlers)
+    server.add_registered_method_handlers('kessel.relations.v1beta1.KesselCheckService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -90,9 +90,9 @@ class KesselCheckService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/kessel.relations.v0.KesselCheckService/Check',
-            relations_dot_v0_dot_check__pb2.CheckRequest.SerializeToString,
-            relations_dot_v0_dot_check__pb2.CheckResponse.FromString,
+            '/kessel.relations.v1beta1.KesselCheckService/Check',
+            kessel_dot_relations_dot_v1beta1_dot_check__pb2.CheckRequest.SerializeToString,
+            kessel_dot_relations_dot_v1beta1_dot_check__pb2.CheckResponse.FromString,
             options,
             channel_credentials,
             insecure,

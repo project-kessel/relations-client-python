@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from relations.v0 import relation_tuples_pb2 as relations_dot_v0_dot_relation__tuples__pb2
+from kessel.relations.v1beta1 import relation_tuples_pb2 as kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2
 
 GRPC_GENERATED_VERSION = '1.64.1'
 GRPC_VERSION = grpc.__version__
@@ -20,7 +20,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in relations/v0/relation_tuples_pb2_grpc.py depends on'
+        + f' but the generated code in kessel/relations/v1beta1/relation_tuples_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -47,19 +47,19 @@ class KesselTupleServiceStub(object):
             channel: A grpc.Channel.
         """
         self.CreateTuples = channel.unary_unary(
-                '/kessel.relations.v0.KesselTupleService/CreateTuples',
-                request_serializer=relations_dot_v0_dot_relation__tuples__pb2.CreateTuplesRequest.SerializeToString,
-                response_deserializer=relations_dot_v0_dot_relation__tuples__pb2.CreateTuplesResponse.FromString,
+                '/kessel.relations.v1beta1.KesselTupleService/CreateTuples',
+                request_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.CreateTuplesRequest.SerializeToString,
+                response_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.CreateTuplesResponse.FromString,
                 _registered_method=True)
         self.ReadTuples = channel.unary_stream(
-                '/kessel.relations.v0.KesselTupleService/ReadTuples',
-                request_serializer=relations_dot_v0_dot_relation__tuples__pb2.ReadTuplesRequest.SerializeToString,
-                response_deserializer=relations_dot_v0_dot_relation__tuples__pb2.ReadTuplesResponse.FromString,
+                '/kessel.relations.v1beta1.KesselTupleService/ReadTuples',
+                request_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ReadTuplesRequest.SerializeToString,
+                response_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ReadTuplesResponse.FromString,
                 _registered_method=True)
         self.DeleteTuples = channel.unary_unary(
-                '/kessel.relations.v0.KesselTupleService/DeleteTuples',
-                request_serializer=relations_dot_v0_dot_relation__tuples__pb2.DeleteTuplesRequest.SerializeToString,
-                response_deserializer=relations_dot_v0_dot_relation__tuples__pb2.DeleteTuplesResponse.FromString,
+                '/kessel.relations.v1beta1.KesselTupleService/DeleteTuples',
+                request_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.DeleteTuplesRequest.SerializeToString,
+                response_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.DeleteTuplesResponse.FromString,
                 _registered_method=True)
 
 
@@ -96,24 +96,24 @@ def add_KesselTupleServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CreateTuples': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateTuples,
-                    request_deserializer=relations_dot_v0_dot_relation__tuples__pb2.CreateTuplesRequest.FromString,
-                    response_serializer=relations_dot_v0_dot_relation__tuples__pb2.CreateTuplesResponse.SerializeToString,
+                    request_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.CreateTuplesRequest.FromString,
+                    response_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.CreateTuplesResponse.SerializeToString,
             ),
             'ReadTuples': grpc.unary_stream_rpc_method_handler(
                     servicer.ReadTuples,
-                    request_deserializer=relations_dot_v0_dot_relation__tuples__pb2.ReadTuplesRequest.FromString,
-                    response_serializer=relations_dot_v0_dot_relation__tuples__pb2.ReadTuplesResponse.SerializeToString,
+                    request_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ReadTuplesRequest.FromString,
+                    response_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ReadTuplesResponse.SerializeToString,
             ),
             'DeleteTuples': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteTuples,
-                    request_deserializer=relations_dot_v0_dot_relation__tuples__pb2.DeleteTuplesRequest.FromString,
-                    response_serializer=relations_dot_v0_dot_relation__tuples__pb2.DeleteTuplesResponse.SerializeToString,
+                    request_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.DeleteTuplesRequest.FromString,
+                    response_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.DeleteTuplesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'kessel.relations.v0.KesselTupleService', rpc_method_handlers)
+            'kessel.relations.v1beta1.KesselTupleService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('kessel.relations.v0.KesselTupleService', rpc_method_handlers)
+    server.add_registered_method_handlers('kessel.relations.v1beta1.KesselTupleService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -141,9 +141,9 @@ class KesselTupleService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/kessel.relations.v0.KesselTupleService/CreateTuples',
-            relations_dot_v0_dot_relation__tuples__pb2.CreateTuplesRequest.SerializeToString,
-            relations_dot_v0_dot_relation__tuples__pb2.CreateTuplesResponse.FromString,
+            '/kessel.relations.v1beta1.KesselTupleService/CreateTuples',
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.CreateTuplesRequest.SerializeToString,
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.CreateTuplesResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -168,9 +168,9 @@ class KesselTupleService(object):
         return grpc.experimental.unary_stream(
             request,
             target,
-            '/kessel.relations.v0.KesselTupleService/ReadTuples',
-            relations_dot_v0_dot_relation__tuples__pb2.ReadTuplesRequest.SerializeToString,
-            relations_dot_v0_dot_relation__tuples__pb2.ReadTuplesResponse.FromString,
+            '/kessel.relations.v1beta1.KesselTupleService/ReadTuples',
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ReadTuplesRequest.SerializeToString,
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ReadTuplesResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -195,9 +195,9 @@ class KesselTupleService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/kessel.relations.v0.KesselTupleService/DeleteTuples',
-            relations_dot_v0_dot_relation__tuples__pb2.DeleteTuplesRequest.SerializeToString,
-            relations_dot_v0_dot_relation__tuples__pb2.DeleteTuplesResponse.FromString,
+            '/kessel.relations.v1beta1.KesselTupleService/DeleteTuples',
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.DeleteTuplesRequest.SerializeToString,
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.DeleteTuplesResponse.FromString,
             options,
             channel_credentials,
             insecure,
