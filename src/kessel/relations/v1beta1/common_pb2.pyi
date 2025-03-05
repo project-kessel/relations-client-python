@@ -1,4 +1,4 @@
-from validate import validate_pb2 as _validate_pb2
+from buf.validate import validate_pb2 as _validate_pb2
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from typing import ClassVar as _ClassVar, Mapping as _Mapping, Optional as _Optional, Union as _Union
@@ -52,3 +52,17 @@ class ObjectType(_message.Message):
     namespace: str
     name: str
     def __init__(self, namespace: _Optional[str] = ..., name: _Optional[str] = ...) -> None: ...
+
+class Consistency(_message.Message):
+    __slots__ = ("minimize_latency", "at_least_as_fresh")
+    MINIMIZE_LATENCY_FIELD_NUMBER: _ClassVar[int]
+    AT_LEAST_AS_FRESH_FIELD_NUMBER: _ClassVar[int]
+    minimize_latency: bool
+    at_least_as_fresh: ConsistencyToken
+    def __init__(self, minimize_latency: bool = ..., at_least_as_fresh: _Optional[_Union[ConsistencyToken, _Mapping]] = ...) -> None: ...
+
+class ConsistencyToken(_message.Message):
+    __slots__ = ("token",)
+    TOKEN_FIELD_NUMBER: _ClassVar[int]
+    token: str
+    def __init__(self, token: _Optional[str] = ...) -> None: ...
