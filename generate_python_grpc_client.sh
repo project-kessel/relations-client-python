@@ -9,6 +9,7 @@ python3 -m pip install project-kessel-relations-api-grpc-python --extra-index-ur
 
 echo "Copying files to necessary directory for buf validation files"
 mkdir -p src/buf/validate
+touch src/buf/validate/__init__.py
 cp -r venv/lib/python*/site-packages/buf/validate/* src/buf/validate
 
 echo "Copying files to necessary directory"
