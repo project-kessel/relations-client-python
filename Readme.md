@@ -8,7 +8,6 @@ This package is generated grpc python client from relations-api proto files.
 $ python -m pip install relations-grpc-clients-python-kessel-project
 ```
 
-
 ## Usage
 
 See folder `examples`
@@ -23,17 +22,17 @@ Run following commands in the root directory.
 ```
  ./generate_python_grpc_client.sh
 ```
-### 3. Push the new version of the package to PyPI
 
+### 4. Push the new package to PyPI
 ```
- ./generate_python_grpc_client.sh <new_version>
+ ./publish_to_pypi.sh <new_version>
 ```
+
 example:
 ```
- ./generate_python_grpc_client.sh 0.0.8
+ ./publish_to_pypi.sh 0.0.8
 ```
+NOTE: When `./publish_to_pypi.sh` is executed without an argument, the current version is displayed.
 
-NOTE: When `./generate_python_grpc_client.sh` is executed without an argument, the current version is displayed.
-
-### 4. Create PR with new version of python grpc client
+### 5. Create PR with new version of python grpc client
 The version is included in the commit.
