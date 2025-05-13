@@ -8,15 +8,17 @@ if [ -z "$1" ]; then
   exit
 fi
 
-
-# Set variables
+NEW_VERSION=$1
 VENV_DIR="venv"
 DIST_DIR="dist"
 
-NEW_VERSION=$1
-
-# Update the version in setup.cfg using sed
-sed -i '' 's/^version = .*/version = '"$NEW_VERSION"'/' setup.cfg
+# Cross-platform sed version bump
+echo "Updating version in setup.cfg to $NEW_VERSION"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sed -i '' "s/^version = .*/version = $NEW_VERSION/" setup.cfg
+else
+  sed -i "s/^version = .*/version = $NEW_VERSION/" setup.cfg
+fi
 
 # Check if virtual environment directory exists
 if [ ! -d "$VENV_DIR" ]; then
@@ -25,17 +27,12 @@ if [ ! -d "$VENV_DIR" ]; then
 fi
 
 # Activate the virtual environment
-source $VENV_DIR/bin/activate
+source "$VENV_DIR/bin/activate"
 
 # Upgrade pip
 echo "Upgrading pip..."
 python3 -m pip install --upgrade pip
-
-# Check if the bump2version command succeeded
-if [ $? -ne 0 ]; then
-    echo "Failed to bump the version. Aborting."
-    exit 1
-fi
+python3 -m pip install --upgrade build twine
 
 # Remove old distribution files
 echo "Removing old distribution files..."
@@ -47,15 +44,9 @@ python3 -m build
 
 # Upload the distribution to PyPI
 echo "Uploading the distribution to PyPI..."
-twine upload $DIST_DIR/*
+twine upload "$DIST_DIR"/*
 
 # Deactivate the virtual environment
 deactivate
-
-# Check the exit status of the twine upload
-if [ $? -ne 0 ]; then
-    echo "Failed to upload the package to PyPI. Aborting."
-    exit 1
-fi
 
 echo "Package successfully uploaded to PyPI!"
