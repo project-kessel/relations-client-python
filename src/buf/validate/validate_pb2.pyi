@@ -1,3 +1,5 @@
+import datetime
+
 from google.protobuf import descriptor_pb2 as _descriptor_pb2
 from google.protobuf import duration_pb2 as _duration_pb2
 from google.protobuf import timestamp_pb2 as _timestamp_pb2
@@ -14,8 +16,7 @@ DESCRIPTOR: _descriptor.FileDescriptor
 class Ignore(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = ()
     IGNORE_UNSPECIFIED: _ClassVar[Ignore]
-    IGNORE_IF_UNPOPULATED: _ClassVar[Ignore]
-    IGNORE_IF_DEFAULT_VALUE: _ClassVar[Ignore]
+    IGNORE_IF_ZERO_VALUE: _ClassVar[Ignore]
     IGNORE_ALWAYS: _ClassVar[Ignore]
 
 class KnownRegex(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
@@ -24,8 +25,7 @@ class KnownRegex(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     KNOWN_REGEX_HTTP_HEADER_NAME: _ClassVar[KnownRegex]
     KNOWN_REGEX_HTTP_HEADER_VALUE: _ClassVar[KnownRegex]
 IGNORE_UNSPECIFIED: Ignore
-IGNORE_IF_UNPOPULATED: Ignore
-IGNORE_IF_DEFAULT_VALUE: Ignore
+IGNORE_IF_ZERO_VALUE: Ignore
 IGNORE_ALWAYS: Ignore
 KNOWN_REGEX_UNSPECIFIED: KnownRegex
 KNOWN_REGEX_HTTP_HEADER_NAME: KnownRegex
@@ -50,12 +50,20 @@ class Rule(_message.Message):
     def __init__(self, id: _Optional[str] = ..., message: _Optional[str] = ..., expression: _Optional[str] = ...) -> None: ...
 
 class MessageRules(_message.Message):
-    __slots__ = ("disabled", "cel")
-    DISABLED_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("cel", "oneof")
     CEL_FIELD_NUMBER: _ClassVar[int]
-    disabled: bool
+    ONEOF_FIELD_NUMBER: _ClassVar[int]
     cel: _containers.RepeatedCompositeFieldContainer[Rule]
-    def __init__(self, disabled: bool = ..., cel: _Optional[_Iterable[_Union[Rule, _Mapping]]] = ...) -> None: ...
+    oneof: _containers.RepeatedCompositeFieldContainer[MessageOneofRule]
+    def __init__(self, cel: _Optional[_Iterable[_Union[Rule, _Mapping]]] = ..., oneof: _Optional[_Iterable[_Union[MessageOneofRule, _Mapping]]] = ...) -> None: ...
+
+class MessageOneofRule(_message.Message):
+    __slots__ = ("fields", "required")
+    FIELDS_FIELD_NUMBER: _ClassVar[int]
+    REQUIRED_FIELD_NUMBER: _ClassVar[int]
+    fields: _containers.RepeatedScalarFieldContainer[str]
+    required: bool
+    def __init__(self, fields: _Optional[_Iterable[str]] = ..., required: bool = ...) -> None: ...
 
 class OneofRules(_message.Message):
     __slots__ = ("required",)
@@ -543,7 +551,7 @@ class DurationRules(_message.Message):
     gte: _duration_pb2.Duration
     not_in: _containers.RepeatedCompositeFieldContainer[_duration_pb2.Duration]
     example: _containers.RepeatedCompositeFieldContainer[_duration_pb2.Duration]
-    def __init__(self, const: _Optional[_Union[_duration_pb2.Duration, _Mapping]] = ..., lt: _Optional[_Union[_duration_pb2.Duration, _Mapping]] = ..., lte: _Optional[_Union[_duration_pb2.Duration, _Mapping]] = ..., gt: _Optional[_Union[_duration_pb2.Duration, _Mapping]] = ..., gte: _Optional[_Union[_duration_pb2.Duration, _Mapping]] = ..., not_in: _Optional[_Iterable[_Union[_duration_pb2.Duration, _Mapping]]] = ..., example: _Optional[_Iterable[_Union[_duration_pb2.Duration, _Mapping]]] = ..., **kwargs) -> None: ...
+    def __init__(self, const: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ..., lt: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ..., lte: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ..., gt: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ..., gte: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ..., not_in: _Optional[_Iterable[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]]] = ..., example: _Optional[_Iterable[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]]] = ..., **kwargs) -> None: ...
 
 class TimestampRules(_message.Message):
     __slots__ = ("const", "lt", "lte", "lt_now", "gt", "gte", "gt_now", "within", "example")
@@ -566,7 +574,7 @@ class TimestampRules(_message.Message):
     gt_now: bool
     within: _duration_pb2.Duration
     example: _containers.RepeatedCompositeFieldContainer[_timestamp_pb2.Timestamp]
-    def __init__(self, const: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., lt: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., lte: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., lt_now: bool = ..., gt: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., gte: _Optional[_Union[_timestamp_pb2.Timestamp, _Mapping]] = ..., gt_now: bool = ..., within: _Optional[_Union[_duration_pb2.Duration, _Mapping]] = ..., example: _Optional[_Iterable[_Union[_timestamp_pb2.Timestamp, _Mapping]]] = ...) -> None: ...
+    def __init__(self, const: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., lt: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., lte: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., lt_now: bool = ..., gt: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., gte: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., gt_now: bool = ..., within: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ..., example: _Optional[_Iterable[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]]] = ...) -> None: ...
 
 class Violations(_message.Message):
     __slots__ = ("violations",)
