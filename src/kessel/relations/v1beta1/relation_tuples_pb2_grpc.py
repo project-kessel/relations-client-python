@@ -41,6 +41,11 @@ class KesselTupleServiceStub(object):
                 request_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ImportBulkTuplesRequest.SerializeToString,
                 response_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ImportBulkTuplesResponse.FromString,
                 _registered_method=True)
+        self.AcquireLock = channel.unary_unary(
+                '/kessel.relations.v1beta1.KesselTupleService/AcquireLock',
+                request_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.AcquireLockRequest.SerializeToString,
+                response_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.AcquireLockResponse.FromString,
+                _registered_method=True)
 
 
 class KesselTupleServiceServicer(object):
@@ -77,6 +82,12 @@ class KesselTupleServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AcquireLock(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_KesselTupleServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -99,6 +110,11 @@ def add_KesselTupleServiceServicer_to_server(servicer, server):
                     servicer.ImportBulkTuples,
                     request_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ImportBulkTuplesRequest.FromString,
                     response_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ImportBulkTuplesResponse.SerializeToString,
+            ),
+            'AcquireLock': grpc.unary_unary_rpc_method_handler(
+                    servicer.AcquireLock,
+                    request_deserializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.AcquireLockRequest.FromString,
+                    response_serializer=kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.AcquireLockResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -216,6 +232,33 @@ class KesselTupleService(object):
             '/kessel.relations.v1beta1.KesselTupleService/ImportBulkTuples',
             kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ImportBulkTuplesRequest.SerializeToString,
             kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.ImportBulkTuplesResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def AcquireLock(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/kessel.relations.v1beta1.KesselTupleService/AcquireLock',
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.AcquireLockRequest.SerializeToString,
+            kessel_dot_relations_dot_v1beta1_dot_relation__tuples__pb2.AcquireLockResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -22,12 +22,14 @@ class ImportBulkTuplesResponse(_message.Message):
     def __init__(self, num_imported: _Optional[int] = ...) -> None: ...
 
 class CreateTuplesRequest(_message.Message):
-    __slots__ = ("upsert", "tuples")
+    __slots__ = ("upsert", "tuples", "fencing_check")
     UPSERT_FIELD_NUMBER: _ClassVar[int]
     TUPLES_FIELD_NUMBER: _ClassVar[int]
+    FENCING_CHECK_FIELD_NUMBER: _ClassVar[int]
     upsert: bool
     tuples: _containers.RepeatedCompositeFieldContainer[_common_pb2.Relationship]
-    def __init__(self, upsert: bool = ..., tuples: _Optional[_Iterable[_Union[_common_pb2.Relationship, _Mapping]]] = ...) -> None: ...
+    fencing_check: FencingCheck
+    def __init__(self, upsert: bool = ..., tuples: _Optional[_Iterable[_Union[_common_pb2.Relationship, _Mapping]]] = ..., fencing_check: _Optional[_Union[FencingCheck, _Mapping]] = ...) -> None: ...
 
 class CreateTuplesResponse(_message.Message):
     __slots__ = ("consistency_token",)
@@ -56,16 +58,38 @@ class ReadTuplesResponse(_message.Message):
     def __init__(self, tuple: _Optional[_Union[_common_pb2.Relationship, _Mapping]] = ..., pagination: _Optional[_Union[_common_pb2.ResponsePagination, _Mapping]] = ..., consistency_token: _Optional[_Union[_common_pb2.ConsistencyToken, _Mapping]] = ...) -> None: ...
 
 class DeleteTuplesRequest(_message.Message):
-    __slots__ = ("filter",)
+    __slots__ = ("filter", "fencing_check")
     FILTER_FIELD_NUMBER: _ClassVar[int]
+    FENCING_CHECK_FIELD_NUMBER: _ClassVar[int]
     filter: RelationTupleFilter
-    def __init__(self, filter: _Optional[_Union[RelationTupleFilter, _Mapping]] = ...) -> None: ...
+    fencing_check: FencingCheck
+    def __init__(self, filter: _Optional[_Union[RelationTupleFilter, _Mapping]] = ..., fencing_check: _Optional[_Union[FencingCheck, _Mapping]] = ...) -> None: ...
 
 class DeleteTuplesResponse(_message.Message):
     __slots__ = ("consistency_token",)
     CONSISTENCY_TOKEN_FIELD_NUMBER: _ClassVar[int]
     consistency_token: _common_pb2.ConsistencyToken
     def __init__(self, consistency_token: _Optional[_Union[_common_pb2.ConsistencyToken, _Mapping]] = ...) -> None: ...
+
+class AcquireLockRequest(_message.Message):
+    __slots__ = ("lock_id",)
+    LOCK_ID_FIELD_NUMBER: _ClassVar[int]
+    lock_id: str
+    def __init__(self, lock_id: _Optional[str] = ...) -> None: ...
+
+class AcquireLockResponse(_message.Message):
+    __slots__ = ("lock_token",)
+    LOCK_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    lock_token: str
+    def __init__(self, lock_token: _Optional[str] = ...) -> None: ...
+
+class FencingCheck(_message.Message):
+    __slots__ = ("lock_id", "lock_token")
+    LOCK_ID_FIELD_NUMBER: _ClassVar[int]
+    LOCK_TOKEN_FIELD_NUMBER: _ClassVar[int]
+    lock_id: str
+    lock_token: str
+    def __init__(self, lock_id: _Optional[str] = ..., lock_token: _Optional[str] = ...) -> None: ...
 
 class RelationTupleFilter(_message.Message):
     __slots__ = ("resource_namespace", "resource_type", "resource_id", "relation", "subject_filter")
